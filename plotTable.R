@@ -1,4 +1,4 @@
-plotTable <- function(data, title = "Plot") {
+plotTable <- function(data, title = "Plot", xlab = "Years", ylab = "Values") {
   years <- as.numeric(names(data)[-1])
   dataShape <- reshape2::melt(data, id.vars = 1)
   dataPercent <- split(dataShape$value, dataShape$group)
@@ -19,7 +19,7 @@ plotTable <- function(data, title = "Plot") {
   mapply(function(x, i) {
     lines(years, x, col = i)
   }, dataPercent, clours)
-  title(main = title)
+  title(main = title, xlab = xlab, ylab = ylab)
   legend("topright", legend = names(dataPercent), lty = 1, col = clours,
          bg = "transparent")
 }
